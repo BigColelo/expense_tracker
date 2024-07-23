@@ -2,6 +2,7 @@ package it.bigcolelo.expense_tracker.entity;
 
 import java.time.LocalDate;
 
+import it.bigcolelo.expense_tracker.dto.IncomeDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,4 +26,18 @@ public class Income {
     private LocalDate date;
 
     private Double amount;
+
+    public IncomeDTO getIncomeDTO()
+    {
+        IncomeDTO incomeDTO = new IncomeDTO();
+
+        incomeDTO.setId(Id);
+        incomeDTO.setTitle(title);
+        incomeDTO.setAmount(amount);
+        incomeDTO.setCategory(category);
+        incomeDTO.setDescription(description);
+        incomeDTO.setDate(date);
+
+        return incomeDTO;
+    }
 }

@@ -45,20 +45,21 @@ public class IncomeServiceImpl implements IncomeService {
         }
     }
 
-    public List<Income> getAllIncomes()
+    public List<IncomeDTO> getAllIncomes()
     {
         return incomeRepository.findAll()
                                .stream()
                                .sorted(Comparator.comparing(Income::getDate)
                                .reversed())
+                               .map(Income::getIncomeDTO)
                                .collect(Collectors.toList());
     }
 
-    public Income getIncomeById(Long id)
+    public IncomeDTO getIncomeById(Long id)
     {
         Optional<Income> optionalIncome = incomeRepository.findById(id);
         if(optionalIncome.isPresent()){
-            return optionalIncome.get();
+            return optionalIncome.get().getIncomeDTO();
         }else{
             throw new EntityNotFoundException("Income is not present with id " + id);
         }
