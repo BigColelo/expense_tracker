@@ -21,10 +21,10 @@ public class ExpenseServiceImpl implements ExpenseService{
 
     public Expense postExpense(ExpenseDTO expenseDTO)
     {
-        return saveOrUpdatExpense(new Expense(), expenseDTO);
+        return saveOrUpdateExpense(new Expense(), expenseDTO);
     }
 
-    private Expense saveOrUpdatExpense(Expense expense, ExpenseDTO expenseDTO)
+    private Expense saveOrUpdateExpense(Expense expense, ExpenseDTO expenseDTO)
     {
         expense.setTitle(expenseDTO.getTitle());
         expense.setDate(expenseDTO.getDate());
@@ -39,7 +39,7 @@ public class ExpenseServiceImpl implements ExpenseService{
     {
         Optional<Expense> optionalExpense = expenseRepository.findById(id);
         if(optionalExpense.isPresent()){
-            return saveOrUpdatExpense(optionalExpense.get(), expenseDTO);
+            return saveOrUpdateExpense(optionalExpense.get(), expenseDTO);
         }else{
             throw new EntityNotFoundException("Expense is not present with id " + id);
         }
